@@ -26,16 +26,13 @@ public class AgentCore {
 
     public static void premain(String agentArgs, Instrumentation inst) throws IOException {
 
-        for (File file : AgentHome.INSTANCE.listFiles(JarType.AGENT)) {
-            inst.appendToSystemClassLoaderSearch(new JarFile(file));
-        }
+        PluginDownloader.INSTANCE.downloadPlugin(agentArgs, inst);
 
         AgentBuilder builder = new AgentBuilder.Default();
 
         //AgentClassLoader cl = new AgentClassLoader();
         ClassLoader cl = AgentCore.class.getClassLoader();
         List<Plugin> plugins = load(cl);
-
 
         for (Plugin plugin : plugins) {
             log.info( String.format("加载插件：%s", plugin.name()) );

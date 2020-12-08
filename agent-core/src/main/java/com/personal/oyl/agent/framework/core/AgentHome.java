@@ -32,6 +32,10 @@ public enum AgentHome {
         return home;
     }
 
+    public Path getSubDirectoriy(JarType jarType) {
+        return home.resolve(jarType.name().toLowerCase());
+    }
+
     public URL[] listFileUrls(JarType jarType) {
         return Stream.of(listFiles(jarType))
                 .map(File::toURI)

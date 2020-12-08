@@ -9,6 +9,7 @@ public class App {
     public static void main(String[] args) {
         try {
             System.out.println(new DemoService().hello("欧阳"));
+            System.out.println(new DemoService().hello("小朋友"));
             System.out.println(new DemoService().hello(null));
         } catch (Exception e) {
             e.printStackTrace();

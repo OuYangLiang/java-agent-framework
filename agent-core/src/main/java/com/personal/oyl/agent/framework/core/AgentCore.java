@@ -6,6 +6,8 @@ import net.bytebuddy.description.type.TypeDescription;
 import net.bytebuddy.dynamic.DynamicType;
 import net.bytebuddy.implementation.MethodDelegation;
 import net.bytebuddy.utility.JavaModule;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
@@ -20,6 +22,7 @@ import java.util.jar.JarFile;
  * @since 2020-12-07
  */
 public class AgentCore {
+    private static final Logger log = LoggerFactory.getLogger(AgentCore.class);
 
     public static void premain(String agentArgs, Instrumentation inst) throws IOException {
 
@@ -35,7 +38,7 @@ public class AgentCore {
 
 
         for (Plugin plugin : plugins) {
-            System.out.println("加载插件: " + plugin.name());
+            log.info( String.format("加载插件：%s", plugin.name()) );
             builder = builder.type(plugin.typeMatcher()).transform(new AgentBuilder.Transformer() {
                 @Override
                 public DynamicType.Builder<?> transform(DynamicType.Builder<?> builder, TypeDescription typeDescription, ClassLoader classLoader, JavaModule module) {
@@ -45,8 +48,6 @@ public class AgentCore {
         }
 
         builder.installOn(inst);
-
-        System.out.println("agent completed.");
     }
 
     private static  List<Plugin> load(ClassLoader cl) {

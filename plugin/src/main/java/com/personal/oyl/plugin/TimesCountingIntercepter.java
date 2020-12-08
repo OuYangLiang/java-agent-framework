@@ -5,6 +5,8 @@ import net.bytebuddy.implementation.bind.annotation.AllArguments;
 import net.bytebuddy.implementation.bind.annotation.Origin;
 import net.bytebuddy.implementation.bind.annotation.RuntimeType;
 import net.bytebuddy.implementation.bind.annotation.SuperCall;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Method;
 import java.util.concurrent.Callable;
@@ -17,6 +19,7 @@ import java.util.concurrent.atomic.AtomicLong;
  */
 public class TimesCountingIntercepter implements PluginIntercepter {
 
+    private static final Logger log = LoggerFactory.getLogger(TimesCountingIntercepter.class);
     private static final ConcurrentHashMap<Method, AtomicLong> count = new ConcurrentHashMap<>();
 
     @Override
@@ -25,7 +28,7 @@ public class TimesCountingIntercepter implements PluginIntercepter {
 
         long current = count.get(method).incrementAndGet();
 
-        System.out.println(method.getName() + " called: " + current + " times.");
+        log.info(method.getName() + " called: " + current + " times.");
 
         return callable.call();
     }

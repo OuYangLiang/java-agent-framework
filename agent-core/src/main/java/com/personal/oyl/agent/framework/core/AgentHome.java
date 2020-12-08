@@ -1,5 +1,8 @@
 package com.personal.oyl.agent.framework.core;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URI;
@@ -15,6 +18,7 @@ import java.util.stream.Stream;
 public enum AgentHome {
     INSTANCE;
 
+    private static final Logger log = LoggerFactory.getLogger(AgentHome.class);
     private static final String HOME_DIR_NAME = ".java_agent_home";
     private static final String JAR_FILE_EXTENSION = ".jar";
     private final Path home;
@@ -60,7 +64,7 @@ public enum AgentHome {
         if (!file.exists()) {
             boolean created = file.mkdirs();
             if (created) {
-                System.out.println(String.format("创建重力家目录成功：%s", path));
+                log.info(String.format("创建重力家目录成功：%s", path));
             }
         }
 
@@ -75,7 +79,7 @@ public enum AgentHome {
                 boolean created = file.mkdirs();
 
                 if (created) {
-                    System.out.println(String.format("创建Jar包目录成功：%s", file));
+                    log.info(String.format("创建Jar包目录成功：%s", file));
                 }
             }
         }

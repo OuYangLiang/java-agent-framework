@@ -12,6 +12,7 @@
         <module>plugin-api</module>
         <module>plugin</module>
         <module>demo</module>
+        <module>plugin2</module>
     </modules>
     <packaging>pom</packaging>
 

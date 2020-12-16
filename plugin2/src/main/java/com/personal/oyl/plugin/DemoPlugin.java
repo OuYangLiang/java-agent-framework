@@ -8,17 +8,17 @@ import net.bytebuddy.description.type.TypeDescription;
 import net.bytebuddy.matcher.ElementMatcher;
 import net.bytebuddy.matcher.ElementMatchers;
 
-import java.util.Arrays;
 import java.util.List;
 
 /**
  * @author OuYang Liang
- * @since 2020-12-08
+ * @since 2020-12-16
  */
 public class DemoPlugin implements Plugin {
+
     @Override
     public PluginType type() {
-        return PluginType.INTERCEPTER;
+        return PluginType.ADVICE;
     }
 
     @Override
@@ -33,20 +33,16 @@ public class DemoPlugin implements Plugin {
 
     @Override
     public List<PluginIntercepter> intercepters() {
-        return Arrays.asList(
-                new TimesCountingIntercepter(),
-                new NullParameterCheckIntercepter(),
-                new TimeConsumingIntercepter()
-        );
-    }
-
-    @Override
-    public Class<?> advice() {
         return null;
     }
 
     @Override
+    public Class<?> advice() {
+        return DemoAdvice.class;
+    }
+
+    @Override
     public String name() {
-        return "Demo Plugin";
+        return "advice plugin demo";
     }
 }

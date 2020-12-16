@@ -12,10 +12,13 @@ import java.util.List;
  */
 public interface Plugin extends Named {
 
+    PluginType type();
+
     ElementMatcher<TypeDescription> typeMatcher();
 
     ElementMatcher<MethodDescription> methodMatcher();
 
     List<PluginIntercepter> intercepters();
 
+    Class<?> advice();
 }

@@ -26,9 +26,11 @@ public class AgentInterceptor {
     public Object intercept(@Origin Method method, @AllArguments Object[] param, @SuperCall Callable<?> callable) throws Exception {
 
         Callable<?> runner = callable;
-        for (PluginIntercepter intercepter : intercepters) {
-            Object rlt = intercepter.intercept(method, param, runner);
-            runner = () ->  rlt;
+        if (null != intercepters && !intercepters.isEmpty()) {
+            for (PluginIntercepter intercepter : intercepters) {
+                Object rlt = intercepter.intercept(method, param, runner);
+                runner = () ->  rlt;
+            }
         }
 
         return runner.call();

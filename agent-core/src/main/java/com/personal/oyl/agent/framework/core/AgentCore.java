@@ -12,12 +12,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.lang.instrument.Instrumentation;
-import java.lang.instrument.UnmodifiableClassException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ServiceLoader;
 
-import static net.bytebuddy.matcher.ElementMatchers.none;
 
 /**
  * @author OuYang Liang

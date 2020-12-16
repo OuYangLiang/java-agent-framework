@@ -1,4 +1,4 @@
-package com.personal.oyl.plugin;
+package com.personal.oyl.plugin2;
 
 import com.personal.oyl.agent.framework.plugin.api.Plugin;
 import com.personal.oyl.agent.framework.plugin.api.PluginIntercepter;

@@ -3,7 +3,7 @@ package com.personal.oyl.agent.demo;
 /**
  * Hello world!
  *
- * -javaagent:/Users/john/agent-core-1.0.0.jar
+ * -javaagent:/Users/john/agent-core-1.0.0.jar=file:/Users/john/Documents/git_repos/java-agent-framework/plugin2/target/plugin2-1.0.0.jar
  */
 public class App {
     public static void main(String[] args) {

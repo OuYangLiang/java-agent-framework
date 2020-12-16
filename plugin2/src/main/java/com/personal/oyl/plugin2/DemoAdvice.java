@@ -1,4 +1,4 @@
-package com.personal.oyl.plugin;
+package com.personal.oyl.plugin2;
 
 import net.bytebuddy.asm.Advice;
 import net.bytebuddy.implementation.bytecode.assign.Assigner;

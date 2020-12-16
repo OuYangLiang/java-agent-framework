@@ -42,6 +42,7 @@ public enum PluginDownloader {
 
         for (File file : AgentHome.INSTANCE.listFiles(JarType.AGENT)) {
             try {
+                log.info(String.format("将文件%s加入classpath", file.getName()));
                 inst.appendToSystemClassLoaderSearch(new JarFile(file));
             } catch (IOException e) {
                 log.error(e.getMessage(), e);
